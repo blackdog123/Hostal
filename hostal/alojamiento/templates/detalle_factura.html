@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/detalle_factura.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/error403.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Hostal "Doña Clarita"</title>
+</head>
+{% if user.username == ticket.from_user.username or user.username == ticket.to_user.username %}
+<body >
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+       <div class="col-md-12">
+          <div class="invoice">
+             <!-- begin invoice-company -->
+             <div class="invoice-company text-inverse f-w-600">
+                <span class="pull-right hidden-print">
+                <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i>Imprimir</a>
+                </span>
+               Hostal "Doña Clarita"
+             </div>
+             <!-- end invoice-company -->
+             <!-- begin invoice-header -->
+             <div class="invoice-header">
+                <div class="invoice-from">
+                   <small>De</small>
+                   <address class="m-t-5 m-b-5">
+                      <strong class="text-inverse">Datos Hostal</strong><br>
+                     Hostal "Doña Clarita"<br>
+                      Email : {{ticket.from_user.email}}<br>
+                      Teléfono: {{ticket.from_user.profile.telefono}}<br>
+                   </address>
+                </div>
+                <div class="invoice-to">
+                   <small>Para</small>
+                   <address class="m-t-5 m-b-5">
+                      <strong class="text-inverse">Datos Comprador</strong><br>
+                      {{ticket.to_user.first_name}}<br>
+                      Email : {{ticket.to_user.email}}<br>
+                      Teléfono: {{ticket.to_user.profile.telefono}}<br>
+                   </address>
+                </div>
+                <div class="invoice-date">
+                   <small>Fecha de emisión</small>
+                   <div class="date text-inverse m-t-5">{{ticket.fecha_boleta}}</div>
+                   <div class="invoice-detail">
+                      #0{{ticket.id}}<br>
+                      Servicio Productos
+                   </div>
+                </div>
+             </div>
+             <!-- end invoice-header -->
+             <!-- begin invoice-content -->
+             <div class="invoice-content">
+                <!-- begin table-responsive -->
+                <div class="table-responsive">
+                   <table class="table table-invoice">
+                      <thead>
+                         <tr>
+                            <th>Descripción</th>
+                            <th class="text-center" width="10%">Servicio/Cantidad</th>
+                            <th class="text-right" width="20%">Valor</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                         <tr>
+                            <td>
+                               <span class="text-inverse">Tipo de Camas y/o Servicio</span><br>
+                            </td>
+                            <td class="text-center">{{ticket.tipo_habitacion}}</td>
+                            <td class="text-right">$ {{ticket.precio_servivcio}}</td>
+                         </tr>
+                         <tr>
+                            <td>
+                               <span class="text-inverse">Cantidad de Noches</span><br>
+                            </td>
+                            <td class="text-center">{{ticket.noches}}</td>
+                            <td class="text-right">$ {{ticket.precio_noches}}</td>
+                         </tr>
+                         <tr>
+                            <td>
+                               <span class="text-inverse">Cantidad Personas</span><br>
+                            </td>
+                            <td class="text-center">{{ticket.personas}}</td>
+                            <td class="text-right">$ {{ticket.precio_personas}}</td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </div>
+                <!-- end table-responsive -->
+                <!-- begin invoice-price -->
+                <div class="invoice-price">
+                   <div class="invoice-price-left">
+                      <div class="invoice-price-row">
+                         <div class="sub-price">
+                       
+                         </div>
+                         <div class="sub-price">
+                            <i class="fa fa-plus text-muted"></i>
+                         </div>
+                         <div class="sub-price">
+                          
+                         </div>
+                      </div>
+                   </div>
+                   <div class="invoice-price-right">
+                      <small>TOTAL</small> <span class="f-w-600">${{ticket.total}}</span>
+                   </div>
+                </div>
+                <!-- end invoice-price -->
+             </div>
+             <!-- end invoice-content -->
+             <!-- begin invoice-note -->
+             <div class="invoice-note">
+                * Haga todos los cheques pagaderos a [Hostal "Doña Clarita"]<br>
+                * Pagar antes de 30 días<br>
+                * Si tiene algúna pregunta en concreto de esta factura, contactanos  [Nombre, Teléfono, Email]
+             </div>
+             <!-- end invoice-note -->
+             <!-- begin invoice-footer -->
+             <div class="invoice-footer">
+                <p class="text-center m-b-5 f-w-600">
+                   Gracias por tu Compra
+                </p>
+                <p class="text-center">
+                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> HostalDoñaClarita.com</span>
+                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:{{ticket.from_user.profile.telefono}}</span>
+                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> {{ticket.from_user.email}}</span>
+                </p>
+             </div>
+             <!-- end invoice-footer -->
+          </div>
+       </div>
+    </div>
+</body>
+{% else %}
+
+<link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
+<body class="body_error">
+  <use>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" class="whistle">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+<path d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z"/><path d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z"/><path d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z"/></g></g>
+</svg>
+</use>
+<h1 style=" color: #facf5a;">403</h1>
+<h2 style="color: #455d7a;">No Esta Vez, Acceso Prohibido!</h2>
+<div class="container">
+<a href="/" id="back">Volver a Casa</a>
+</div>
+</body>
+
+
+
+{% endif %}
+</html>

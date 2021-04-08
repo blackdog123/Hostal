@@ -1,0 +1,336 @@
+* { 
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
+}
+
+#links {
+    border: 2px solid transparent;
+    color: #fff;
+}
+
+#links:hover {
+    transition: all 0.3s;
+    border-top-color:#FF4000;
+    border-bottom-color:#FF4000;
+    
+}
+
+#nombre_empresa {
+    color: #fff;
+}
+
+#barra_2 {
+    background: #0B243B;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    opacity: 0.95;
+}
+
+#logo {
+    width: 50px; 
+    height: 50px;
+}
+
+#nombre {
+    color: #000;
+    font-weight: 500;
+}
+
+#foto_perfil {
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+    background: #fff;
+    border-radius: 50%;
+   
+}
+
+#navbarDropdownMenuLink {
+    border: 2px solid transparent;
+    background: transparent;
+    border-radius: 0%;
+    color: #fff;  
+}
+
+#navbarDropdownMenuLink:hover {
+    transition: all 0.3s;
+    border-top-color: #FF4000;
+    border-bottom-color: #FF4000;
+  
+}
+
+#navbarDropdownMenuLink:focus {
+    border-top-color: #FF4000;
+    border-bottom-color: #FF4000;
+}
+
+
+#opciones {
+    border-radius: 0%;
+    border: none;
+    padding: 0%;
+}
+  
+
+#opciones a {
+    padding: 0%;
+    font-weight: 500;
+    text-align: center;
+    background: #D8D8D8;
+    padding: 25px;
+}
+
+#opciones a:hover {
+    transition:  all 0.3s;
+    color: #fff;
+    background: #2E2E2E;
+}
+
+#buscar {
+    width: 40%; 
+}
+
+#buscador {
+    box-shadow: none;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;  
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    color: #1C1C1C;
+}
+
+#buscador:hover {
+    background: transparent;
+    border-color:  #2E9AFE;
+    transition: all 0.4s;
+}
+
+#buscador::placeholder {
+    color: #585858;
+}
+
+#buscador:focus {
+    background: transparent;
+    border-color:  #2E9AFE;
+}
+
+#btn_buscar {
+    box-shadow: none;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    background:#424242;
+    color: #A4A4A4;
+    border: 1px solid #424242;
+}
+
+
+#btn_buscar:hover {
+    transition: all 0.3s;
+    color: #fff;
+}
+
+#subir {
+    color: #000;
+    padding: 2px;
+    text-decoration: none;
+}
+
+#subir:hover {
+    background: #F2F2F2;
+    padding: 2px;
+    border-radius: 100px;
+}
+
+#subir_foto {
+    color: #000;
+    padding: 2px;
+    text-decoration: none;
+}
+
+#subir_foto:hover {
+    background: #F2F2F2;
+    padding: 2px;
+    border-radius: 100px;
+}
+
+#chat {
+    color: #000;
+    padding: 2px;
+    text-decoration: none;
+}
+
+
+#chat:hover {
+    background: #F2F2F2;
+    padding: 2px;
+    border-radius: 100px;
+}
+
+#notificacion {
+    color: #000;
+    padding: 2px;
+    text-decoration: none;
+}
+
+#notificacion:hover {
+    background: #F2F2F2;
+    padding: 2px;
+    border-radius: 100px;
+}
+
+
+
+/*********** barra menu ************/
+.mobile_options {
+    background: #D8D8D8;
+    box-shadow: none;
+}
+
+#accordionFlushExample {
+    border-radius: 0%;
+    padding: 0%;
+}
+
+#xd{
+    color: #1C1C1C;
+    text-decoration: none;
+    border: none;
+    background: #D8D8D8;
+    border-radius: 0%;
+    padding: 30px;
+    box-shadow: none;
+    outline-style: none;
+    
+}
+
+#xd:hover {
+    transition:  all 0.3s;
+    color: #fff;
+    background:#1C1C1C;
+    cursor: pointer;
+}
+
+#xd:active {
+    box-shadow: none;
+}
+
+#xd::after{
+    display: none;
+}
+
+
+#menu_mobile {
+    background: #0B243B;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030; 
+    opacity: 0.95;   
+}
+
+@media (min-width:993px) {
+    #menu_mobile {
+        display: none;
+    }
+}
+
+@media(max-width:992px) {
+    #barra_2 {  
+        display: none; 
+    }    
+}
+
+
+#menu_icono_1 {
+    border: none;
+    box-shadow: none;
+    height: 40px;  
+}
+
+#menu_icono_2 {
+    border: 1px solid #E6E6E6;
+    padding: 1px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 30px;
+} 
+
+#menu_icono_2:hover {
+    transition: all 0.3s;
+    background: #2E9AFE;
+    color: #fff;
+}
+
+
+#navbarSupportedContent {
+    border-radius: 5px;
+    padding: 4px; 
+}
+
+#navbarSupportedContent a {
+    transition: 0s;
+    color: #000;
+    padding: 5px;
+    border-radius: 1px;   
+}
+
+#navbarSupportedContent a:hover {
+    background: #FF4000;
+    color: #fff;
+}
+
+#barra_mobile {
+    height: 70px;
+}
+
+#opciones_mobile {
+    text-decoration: none;
+    color: #fff;
+    font-size: 21px;
+}
+
+#opciones_mobile:hover {
+    transition: all 0.3s;
+    color: #FF4000;
+}
+
+#btn_menu {
+    font-size: 23px;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+}
+
+#btn_menu:hover {
+    transition: all 0.3s;
+    color: #FF4000;
+}
+
+#btn_menu:focus {
+    color: #FF4000;
+}
+
+
+#opciones_reserva {
+    border-radius: 0%;
+    border: none;
+    background: #D8D8D8;
+    padding: 0%;
+}
+
+#links_reservas {
+    padding: 25px;
+    color: #000;
+}
+
+#links_reservas:hover {
+    transition:  all 0.3s;
+    color: #fff;
+    background: #2E2E2E;
+}

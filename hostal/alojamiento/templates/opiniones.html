@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/opiniones.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Hostal "Doña Clarita"</title>
+</head>
+
+ <!--Menu-->
+ <header>
+  <!-------------------------------------------Menu administrador-------------------------------------->
+   {% if request.user.username == 'Admin' %}  
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/dashboard" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2"></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+    
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/dashboard" id="xd">
+               Ayuda <span class="icon-help" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+
+       <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/" id="links">Inicio</a>
+        </li>
+        
+       <li class="nav-item">
+         <a class="nav-link" href="/dashboard" id="links">Dashboard</a>
+       </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="links">Ayuda</a>
+        </li>
+      </ul>
+ 
+    
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>     
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+ 
+  <!-------------------------------------------Menu usuarios-------------------------------------->
+   {% else %}
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/reservar" class="icon-calendar" title="Reservar" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2" ></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+       <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="#" id="xd">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/mis_reservas" id="xd">
+              Mis Reservas <span class="icon-address-book-o" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/mis_facturas" id="xd">
+               Mis Facturas <span class="icon-newspaper" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+ 
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-menu-2"></span>
+         </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+      
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+    
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/login" id="xd">
+                 Iniciar Sesión  <span class="icon-user-circle-o" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+         </div>
+   
+       </div>
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+ 
+      
+       {% if request.user.is_authenticated %}
+       <ul class="nav justify-content-center">
+         <li class="nav-item">
+           <a class="nav-link" href="/" id="links">Inicio</a>
+         </li>
+         
+        <li class="nav-item">
+          <a class="nav-link" href="/reservar" id="links">Reservar</a>
+        </li>
+     
+         <li class="nav-item">
+           <a class="nav-link" href="#" id="links">Ayuda</a>
+         </li>
+       </ul>
+       {% else %}
+ 
+       {% endif %}
+      
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>
+             <li><a class="dropdown-item" href="/mis_reservas">Mis Reservas <span class="icon-address-book-o"></span></a></li>      
+             <li><a class="dropdown-item" href="/mis_facturas">Mis Facturas <span class="icon-newspaper"></span></a></li>   
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+   {% endif %}
+ </header>
+ <br>
+ <br>
+ <br>
+   <div class="">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible text-center col-12 mx-auto" id="alerta" role="alert" >
+        <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}{% else %}{{ message.tags|title }}{% endif %}</strong> {{ message }}
+        <button type="button" id="btn_close" class="icon-cancel" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+<body class="body">
+  
+    <div class="container">
+      {% load humanize %}
+  
+      <div class="card" id="caja_post_index">
+        {% if post.imagen %}
+        <td><a href="{{ post.imagen.url }}"><img  id="imagen_post" class="img-fluid" src="{{ post.imagen.url }}"></img></a></td>
+        {% endif %}
+   
+        {% if request.user.is_authenticated %}
+
+        {% else %}
+        <p id="message_no_login">! Aviso ¡ debés haber iniciado sesión para poder dar una opinión sobre la Hostal</p>
+        {% endif %}
+  
+        <div class="group " id="div_count">
+          <a href="#" id="count">Comentarios ({{post.comments.count}})</a>
+        </div>
+  
+  
+        {% if request.user.is_authenticated %}
+        <form class="d-flex" method="POST" action="{% url 'publicar_comentario' post.pk %}">
+          {% csrf_token %}
+  
+          <select hidden class="form-select" name="post_id" aria-label="Default select example" required>
+            <option disabled>----------------</option>
+            <option selected value="{{post.id}}" >{{post.id}}</option>
+          </select>
+       
+          <select hidden class="form-select" name="user_id" aria-label="Default select example" required>
+            <option disabled>----------------</option>
+            <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+          </select>
+       
+          <div class="input-group" id="opc_card">
+            <img class="input-group" src="{{ request.user.profile.foto_perfil.url}}" id="foto_comment" alt="foto_perfil">
+            <input type="text" id="input_comentario" name="texto" title="escribir comentario" class="form-control" required placeholder="Escribe un comentario ..." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" title="publicar cometario" type="submit" id="btn_cometario"><span class="icon-paper-plane"></span></button>
+          </div>    
+        </form>
+        {% else %}
+
+        {% endif %}
+        <br>
+  
+    
+        {% if not post.comments.all %}
+          <p id="sin_comentarios">
+          No hay comentarios aquí ...<a href=""></a>
+          </p> 
+        {% else %}
+            {% for comment in post.comments.all %}
+              <div id="caja_comentarios">
+                <a id="autor_comentario" href="#!">
+                <img src="{{ comment.user.profile.foto_perfil.url}}" id="foto_perfil_comentario" alt="foto_perfil"> 
+                {{comment.user.username}}</a>
+                <time data-time="#" id="tiempo" title="{{comment.fecha_creacion}}"><span class="icon-chat-2">
+                </span> {{comment.fecha_creacion|naturaltime}}</time>
+                <p id="text_comentario">
+                  {{comment.texto}}         
+                </p>
+                <hr>
+              </div>
+            {%endfor%}
+        {% endif %}   
+      </div>
+  
+    </div>
+   <br>
+</body>
+</html>

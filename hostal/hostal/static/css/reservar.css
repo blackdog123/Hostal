@@ -1,0 +1,74 @@
+.body {
+    background: url("/static/img/reserva_back.jpg") no-repeat center top;
+}
+
+.formulario {
+    max-width: 500px;
+    margin-top: 30px;
+    margin-left: 50px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #8b8b8b;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
+    opacity: 0.95;
+}
+
+@media(max-width:768px) {
+    .formulario  {
+        margin: auto;
+        margin-top: 30px;
+    }
+}
+
+#ver_precios {
+    margin-top: 5px;
+    border-radius: 0%;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    color: #0174DF;
+}
+
+#ver_precios:hover {
+    text-decoration: underline;
+}
+
+#btn_reservar {
+    width: 60%;
+    margin: auto;
+    border: none;
+    color: #fff;
+    background: #FF4000;
+    box-shadow: none;
+}
+
+#btn_reservar:hover {
+    transition:  all 0.3s;
+    box-shadow: 2px 2px 3px gray;
+}
+
+@media(max-width:768px) {
+    #btn_reservar {
+        width: 80%;
+    }
+    .formulario {
+        border: none;
+        border-radius: 0%;
+        
+    }
+}
+
+#btn_drop_prices {
+    box-shadow: none;
+}
+
+#btn_drop_prices:hover {
+    box-shadow: 2px 2px 3px gray;
+}
+
+#btn_drop_prices:focus {
+    
+    box-shadow: 2px 2px 3px gray;
+}
+

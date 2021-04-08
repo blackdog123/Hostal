@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/add_trabajador.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Hostal "Doña Clarita"</title>
+</head>
+
+ <!--Menu-->
+ <header>
+  <!-------------------------------------------Menu administrador-------------------------------------->
+   {% if request.user.username == 'Admin' %}  
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/dashboard" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2"></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+    
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/agregar_trabajador" id="xd">
+               Agregar Trabajador <span class="icon-user-plus" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/dashboard" id="xd">
+               Ayuda <span class="icon-help" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+
+       <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/" id="links">Inicio</a>
+        </li>
+        
+       <li class="nav-item">
+         <a class="nav-link" href="/dashboard" id="links">Dashboard</a>
+       </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="links">Ayuda</a>
+        </li>
+      </ul>
+ 
+    
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li> 
+             <li><a class="dropdown-item" href="/agregar_trabajador">Agregar Trabajador <span class="icon-user-plus"></span></a></li>     
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+ 
+  <!-------------------------------------------Menu usuarios-------------------------------------->
+   {% else %}
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/agregar_trabajador" class="icon-user-plus" title="Agregar Trabajador" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2" ></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+       <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="#" id="xd">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+    
+       <div class="accordion accordion-flush" id="accordionFlushExample">
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/reservar" id="xd">
+               Reservar <span class="icon-calendar" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+
+         <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/mis_reservas" id="xd">
+              Mis Reservas <span class="icon-address-book-o" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/mis_facturas" id="xd">
+               Mis Facturas <span class="icon-newspaper" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+ 
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-menu-2"></span>
+         </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+      
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+    
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/login" id="xd">
+                 Iniciar Sesión  <span class="icon-user-circle-o" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+         </div>
+   
+       </div>
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+ 
+      
+       {% if request.user.is_authenticated %}
+       <ul class="nav justify-content-center">
+         <li class="nav-item">
+           <a class="nav-link" href="/" id="links">Inicio</a>
+         </li>
+         
+        <li class="nav-item">
+          <a class="nav-link" href="/reservar" id="links">Reservar</a>
+        </li>
+     
+         <li class="nav-item">
+           <a class="nav-link" href="#" id="links">Ayuda</a>
+         </li>
+       </ul>
+       {% else %}
+ 
+       {% endif %}
+      
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>
+             <li><a class="dropdown-item" href="/agregar_trabajador">Agregar Trabajador <span class="icon-user-plus"></span></a></li>  
+             <li><a class="dropdown-item" href="/mis_reservas">Mis Reservas <span class="icon-address-book-o"></span></a></li>      
+             <li><a class="dropdown-item" href="/mis_facturas">Mis Facturas <span class="icon-newspaper"></span></a></li>   
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+   {% endif %}
+ </header>
+ <br>
+ <br>
+ <br>
+<body class="body">
+    <div class="container">
+        <form action="guardar_trabajador" method="POST" class="formulario" enctype="multipart/form-data">
+    
+          {% csrf_token %}
+          <div class="mb-3 col-12">
+            <h3 class="sub">Agregar Trabajador</h3>
+          </div>
+          
+          <select hidden class="form-select" name="empresa_id" id="id_empresa" aria-label="Default select example" required>
+            <option disabled>----------------</option>
+            <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+          </select>
+       
+          <div class="row">
+            <div class="col">
+                <label class="form-label" id="subtitulos">Nombre Trabajador <span id="requerido">*</span></label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+            </div>
+            <div class="col">
+                <label class="form-label" id="subtitulos">Apellido Trabajador <span id="requerido">*</span></label>
+              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required >
+            </div>
+            
+          </div>
+          <div class="mb-3">
+            <label class="form-label " id="subtitulos">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Ej: Email.trabajador@correo.com ">
+          </div>
+
+          <div class="row">
+            <div class="col">
+                <label class="form-label" id="subtitulos">Rut sin puntos ni guión <span id="requerido">*</span></label>
+              <input type="text" class="form-control" maxlength="9" id="rut" name="rut" placeholder="Ej: 111111111" required >
+            </div>
+            <div class="col">
+                <label class="form-label" id="subtitulos">Teléfono <span id="requerido">*</span></label>
+              <input type="number" class="form-control" min="0" max="999999999" minlength="9" maxlength="9" id="telefono" name="telefono" placeholder="Ej: 123456789" required >
+            </div>
+          </div>
+
+          <br>
+          <div class="d-grid gap-2 col-9 mx-auto">
+            <button class="btn btn-primary" id="btn_guardar" name="guardar" type="submit">Guardar <span class="icon-user-plus"></span></button>
+          </div>
+            
+        </form>
+      </div> 
+    
+</body>
+</html>

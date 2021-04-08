@@ -1,0 +1,14 @@
+.body {
+    background: #fafafa;
+}
+#estate {
+    font-weight: 500;
+}
+
+#carta_madre {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #b8b8b8;
+   
+}

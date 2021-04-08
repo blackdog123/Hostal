@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+
+    <title>Hostal "Doña Clarita"</title>
+</head>
+
+ <!--Menu-->
+ <header>
+  <!-------------------------------------------Menu administrador-------------------------------------->
+   {% if request.user.username == 'Admin' %}  
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/dashboard" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2"></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+    
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/dashboard" id="xd">
+               Ayuda <span class="icon-help" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+
+       <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/" id="links">Inicio</a>
+        </li>
+        
+       <li class="nav-item">
+         <a class="nav-link" href="/dashboard" id="links">Dashboard</a>
+       </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="links">Ayuda</a>
+        </li>
+      </ul>
+ 
+    
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>     
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+ 
+  <!-------------------------------------------Menu usuarios-------------------------------------->
+   {% else %}
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/reservar" class="icon-calendar" title="Reservar" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2" ></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+       <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="#" id="xd">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/mis_reservas" id="xd">
+              Mis Reservas <span class="icon-address-book-o" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/mis_facturas" id="xd">
+               Mis Facturas <span class="icon-newspaper" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+ 
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-menu-2"></span>
+         </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+      
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+    
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/login" id="xd">
+                 Iniciar Sesión  <span class="icon-user-circle-o" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+         </div>
+   
+       </div>
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+ 
+      
+       {% if request.user.is_authenticated %}
+       <ul class="nav justify-content-center">
+         <li class="nav-item">
+           <a class="nav-link" href="/" id="links">Inicio</a>
+         </li>
+         
+        <li class="nav-item">
+          <a class="nav-link" href="/reservar" id="links">Reservar</a>
+        </li>
+     
+         <li class="nav-item">
+           <a class="nav-link" href="#" id="links">Ayuda</a>
+         </li>
+       </ul>
+       {% else %}
+ 
+       {% endif %}
+      
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.first_name}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>
+             <li><a class="dropdown-item" href="/mis_reservas">Mis Reservas <span class="icon-address-book-o"></span></a></li>      
+             <li><a class="dropdown-item" href="/mis_facturas">Mis Facturas <span class="icon-newspaper"></span></a></li>   
+             <li><a class="dropdown-item" href="/logout">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+   {% endif %}
+ </header>
+ <br>
+ <br>
+ <br>
+<body class="body">
+  <div class="">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible text-center col-12 mx-auto" id="alerta" role="alert" >
+        <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}{% else %}{{ message.tags|title }}{% endif %}</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+    <div id="carouselExampleCaptions" class="carousel slide container" data-bs-ride="carousel" style="margin-top: 3px;">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'img/banner2.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <p id="texto_carruesel">DESCANSE CON CALIDAD</p>
+            </div>
+          </div>
+       
+          <div class="carousel-item">
+            <img src="{% static 'img/banner.jpeg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block img-fluid">
+         
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="{% static 'img/banner4.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block img-fluid">
+              <p id="texto_carruesel_3">DELICIOSOS DESAYUNOS</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      {# tarjetas info #}
+
+      <div class="container" style="margin-top: 50px;" >
+
+        <div class="container">
+          <h2 id="titutlo">Nuestra Hostal</h2>
+        </div>
+       
+        <div class="card-group">
+          {% for post in object_list %}
+          <div class="card" id="carta_post" ><a href="{{post.imagen.url}}">
+            <img src="{{post.imagen.url}}" class="card-img-top" alt="...">
+          </a>
+            <div class="card-body">
+              <h5 class="card-title">{{post.Titulo}}</h5>
+              <a href="{% url 'opiniones' post.pk %}" class="btn btn-primary" id="btn_view_hostal"><span class="icon-chat-2"></span> Ver Opiniones</a>
+            </div>
+          </div>
+        {% endfor%}
+      </div>
+      </div>
+    <br>
+    <br>
+    <br>
+      <div class="card container" id="servicios">
+        <div class="card-body">
+          <h2 id="titutlo">Servicios</h2>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Recepción 24 horas</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Recepcionistas bilingües</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Servicio de desayuno y convenio con restaurantes</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Wi-Fi</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Aire acondicionado</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Facturación electrónica</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Central de reservas</li>
+            <li class="list-group-item" id="lista_service"><span class="icon-ok-2" id="check_icons"></span> Studios, suites y departamentos</li>
+          </ul>
+        </div>
+      </div>
+
+      <br>
+</body>
+
+<div class="footer-dark" style="background: #0B243B;">
+  <footer>
+      <div class="container">
+          <div class="row" style="background: #0B243B;">
+       
+              <div class="col-md-6 item text">
+                  <h3>Hostal "Doña Clarita"</h3>
+                  <p>DOÑA CLARITA es una empresa familiar dedicada al alojamiento y servicio de comedor para empresas, orientada principalmente a dar un servicio de calidad y seguridad a trabajadores que necesitan hospedaje por periodos de tiempo. Este servicio es exclusivo para empresa, no aceptan clientes particulares.</p>
+              </div>
+              <div class="col item social">
+                <p>Contactanos</p>
+                <a href="#"><span class="icon-facebook"></span></a>
+                <a href="#"><span class="icon-instagram"></span></a>
+                <a href="#"><span class="icon-google"></span></a>
+            </div>
+          </div>
+          <p class="copyright">Hostal "Doña Clarita" © 2021</p>
+      </div>
+  </footer>
+</div>
+
+</html>

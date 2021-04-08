@@ -1,0 +1,124 @@
+.body {
+    background: #fff;
+}
+
+#texto_carruesel {
+    width: 50%;
+    padding: 10px;
+    font-size: 30px;
+    background: #000;
+    opacity: 0.7;
+    font-style: italic;
+
+}
+@media(max-width:1200px) {
+    #texto_carruesel {
+        font-size: 18px;
+    }
+}
+
+#texto_carruesel_3 {
+    width: 50%;
+    padding: 10px;
+    font-size: 30px;
+    background: #000;
+    opacity: 0.7;
+    font-style: italic;
+
+}
+
+
+@media(max-width:1200px) {
+    #texto_carruesel_3 {
+        font-size: 18px;
+    }
+}
+
+#carta_post {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    background: #fafafa;
+}
+
+#carta_post:hover {
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px gray;
+}
+
+.card-title {
+    color: #0B4C5F;
+}
+
+#btn_view_hostal {
+    margin-top: 10px;
+    background: #FF4000;
+    border: none;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media(max-width:1100px) {
+    #btn_view_hostal {
+        font-size: 12px;
+    }
+    .card-title {
+        font-size: 16px;
+    }
+}
+
+/**cartas ccentro*/
+
+#carta_madre {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 5px;
+ 
+}
+
+#titutlo{
+    color: #0B4C5F;
+}
+
+#servicios {
+    max-width: 1000px;
+    margin: auto;
+    border: none;
+    background: #f2f2f2;
+}
+
+#check_icons {
+    color:#0B4C5F;
+}
+
+#lista_service {
+    background: #f2f2f2;
+    border: none;
+}
+
+#aviso {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background: #FFBF00;
+    border: none;
+    box-shadow: none;
+    width: 80%;
+}
+
+
+#alerta {
+    border-radius: 0%;
+    margin-top: 5px;
+    margin-bottom: 0%;
+}
+
+@media(max-width:768px) {
+    #alerta {
+       font-size: 14px;
+    }
+    
+}
