@@ -1,4 +1,5 @@
 # Hostal
+
 este proyecto es una aplicacion web responsiva desarrollada con el framework de python "Django" una base de datos "No SQL" (SQLITE), 
 cuyo uso es para la realización de reservas en una hostal, tambien cuenta con un panel de administracion para gestionar todo el negocio.
 
