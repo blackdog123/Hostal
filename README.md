@@ -23,7 +23,7 @@ ya estando en la raiz del proyecto, en la consola ejecute los siguientes comando
 1. cd env 
 2. cd scripts
 3. ./activate (esto activará el servidor local)
-4 cd.. (x2 , para volver a la carpeta raiz)
+4. cd.. (x2 , para volver a la carpeta raiz)
 5. cd hotal
 6. py manage.py runserver
 
