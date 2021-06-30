@@ -27,6 +27,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 ul {
@@ -47,14 +48,6 @@ button {
   cursor: pointer;
 }
 
-input {
-  -webkit-appearance: none;
-}
-
-[type="checkbox"] {
-  position: absolute;
-  left: -9999px;
-}
 
 label {
   cursor: pointer;
@@ -450,71 +443,7 @@ body {
 
 /* SWITCH STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.switch label {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-column-gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-}
 
-.switch span:first-child {
-  position: relative;
-  width: 50px;
-  height: 26px;
-  border-radius: 15px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
-  background: var(--switch-bgLightModeColor);
-  transition: all 0.3s;
-}
-
-.switch span:first-child::before,
-.switch span:first-child::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-
-.switch span:first-child::before {
-  top: 1px;
-  left: 1px;
-  width: 24px;
-  height: 24px;
-  background: var(--white);
-  z-index: 1;
-  transition: transform 0.3s;
-}
-
-.switch span:first-child::after {
-  top: 50%;
-  right: 8px;
-  width: 10px;
-  height: 10px;
-  transform: translateY(-50%);
-  background: var(--switch-sunColor);
-  box-shadow: 0 0 4px 2px #ffdb1a;
-}
-
-.switch [type="checkbox"]:checked + label span:first-child {
-  background: var(--switch-bgDarkModeColor);
-}
-
-.switch [type="checkbox"]:focus + label span:first-child {
-  box-shadow: 0 3px 5px rgba(255, 255, 255, 0.25);
-}
-
-.switch [type="checkbox"]:checked + label span:first-child::before {
-  transform: translateX(24px);
-}
-
-.switch [type="checkbox"]:checked + label span:first-child::after {
-  left: 12px;
-  width: 15px;
-  height: 15px;
-  background: transparent;
-  box-shadow: -2px -5px 0 var(--switch-moonColor);
-  transform: translateY(-50%) rotate(-72deg);
-}
 
 
 /* LIGHT MODE STYLES
@@ -543,9 +472,7 @@ body {
   fill: var(--black);
 }
 
-.light-mode .switch [type="checkbox"]:focus + label span:first-child {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
-}
+
 
 @media screen and (max-width: 767px) {
   .light-mode .search-and-user .admin-profile svg {
@@ -554,11 +481,11 @@ body {
 }
 
 
-
 .imagen_perfil {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 12%;
+  border: 2px solid #f2f2f2;
 }
 
 #logo {
@@ -593,4 +520,31 @@ body {
 #btn_ver_perfil:hover {
   transition: all 0.3s;
   box-shadow: 2px 2px 3px gray;
+}
+
+
+.admin-profile {
+  padding:5px;
+  background: var(--page-header-bgColor);
+  color: #fff; 
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px 5px#bbb;
+}
+
+
+@media(max-width:767px){
+  .admin-profile {
+    padding: 0px;
+    background: var(--page-header-bgColor);
+    color: #fff; 
+    border-radius: 0px;
+    box-shadow: none;
+   }
+   
+}
+
+
+thead tr {
+  background: var(--page-header-bgColor); 
+  color:#fff;  
 }

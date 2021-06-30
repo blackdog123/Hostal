@@ -13,7 +13,7 @@
 
     <link type="text/css" rel="stylesheet" href="{% static 'css/registro.css' %}">
 </head>
-{% if request.user.username == 'Admin' %}
+{% if request.user.profile.tipo_permiso == 'Administrador' %}
 <body>
     <div>
         {% if messages %}
@@ -35,10 +35,10 @@
                 <input type="text" class="form-control item" name="username" id="username" placeholder="Username" required >
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" name="first_name" id="first_name" placeholder="Nombre empresa" required >
+                <input type="text" readonly hidden value="empresa_default" class="form-control item" name="first_name" id="first_name" placeholder="Nombre empresa" required >
             </div>
             <div class="form-group">
-                <input type="email" class="form-control item" name="email" id="email" placeholder="Email" required>
+                <input type="email" readonly hidden value="empresa_default@gmail.com" class="form-control item" name="email" id="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control item" name="password1" id="password" placeholder="Contraseña" required >
@@ -49,19 +49,8 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-block create-account" id="btn_create">Crear Cuenta</button>
             </div>
-
-            <div class="container text-center">
-            <label>Ya tienes una cuenta ?</label>
-            <a href="/login" id="login">Iniciar Sesión</a>
-            </div>
         </form>
-        <div class="social-media">
-            <h5>Registrarme con </h5>
-            <div class="social-icons">
-                <a href="#" style="text-decoration: none;"><i class="icon-social-facebook" title="Facebook"></i></a>
-                <a href="#" style="text-decoration: none;"><i class="icon-social-google" title="Google"></i></a>
-            </div>
-        </div>
+  
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
@@ -81,7 +70,17 @@
 <h1 style=" color: #facf5a;">403</h1>
 <h2 style="color: #455d7a;">No Esta Vez, Acceso Prohibido!</h2>
 <div class="container">
-<a href="/" id="back">Volver a Casa</a>
+    {% if request.user.profile.tipo_permiso == 'Solicitante' %}
+    <a href="/proveedores" id="back">Volver a Casa</a>
+    {% elif request.user.profile.tipo_permiso == 'Recepcionista' %}
+    <a href="/habitaciones" id="back">Volver a Casa</a>
+    {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+    <a href="/comedor" id="back">Volver a Casa</a>
+    {% elif request.user.profile.tipo_permiso == 'Proveedor' %}
+    <a href="/index_proveedor" id="back">Volver a Casa</a>
+    {% else%}
+    <a href="/" id="back">Volver a Casa</a>
+    {% endif %}
 </div>
 </body>
 

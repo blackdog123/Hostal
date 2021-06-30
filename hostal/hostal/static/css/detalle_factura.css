@@ -5,8 +5,10 @@
 
 .invoice {
     background: #fff;
-    padding: 20px
+    padding: 20px;
+    box-shadow: 8px 5px 10px 8px #bbb;
 }
+
 
 .invoice-company {
     font-size: 20px

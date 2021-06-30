@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/detalle_room.css' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostal "Doña Clarita"</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
+
+{% if request.user.profile.tipo_permiso == 'Proveedor' or request.user.profile.tipo_permiso == 'Solicitante' or  request.user.profile.tipo_permiso == 'Ayudante Cocina' %}  
+<link type="text/css" rel="stylesheet" href="{% static 'css/error403.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
+<body class="body_error">
+  <use>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" class="whistle">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+<path d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z"/><path d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z"/><path d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z"/></g></g>
+</svg>
+</use>
+<h1 style=" color: #facf5a;">403</h1>
+<h2 style="color: #455d7a;">No Esta Vez, Acceso Prohibido!</h2>
+<div class="container">>
+  {% if request.user.profile.tipo_permiso == 'Solicitante' %}
+  <a href="/proveedores" id="back">Volver a Casa</a>
+  {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina'%}
+  <a href="/comedor" id="back">Volver a Casa</a>
+  {% else %}
+  <a href="/index_proveedor" id="back">Volver a Casa</a>
+  {% endif %}
+</div>
+</body>
+{% else %}
+
+ <!--Menu-->
+ <header>
+  <!-------------------------------------------Menu administrador y trabajadores -------------------------------------->
+   {% if request.user.profile.tipo_permiso == 'Administrador' or request.user.profile.tipo_permiso == 'Recepcionista' or request.user.profile.tipo_permiso == 'Solicitante' or  request.user.profile.tipo_permiso == 'Ayudante Cocina' %}  
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       {% if request.user.profile.tipo_permiso == 'Recepcionista' %}
+       <a href="/habitaciones" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       {% elif request.user.profile.tipo_permiso == 'Solicitante' %}
+       <a href="/proveedores" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+       <a href="/comedor" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       {% else %}
+       <a href="/dashboard" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+       {% endif %}
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon-menu-2" ></span>
+      </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+        {% if request.user.profile.tipo_permiso == 'Administrador' %}
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/ayuda" id="xd">
+               Ayuda <span class="icon-help" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" id="xd"  href="/nuevo_post">
+            Nuevo Post <span class="icon-upload" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+         {% else %}
+         <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="#" id="xd"  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/logout" id="xd" >
+              Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+        {% endif %}
+       </div>
+ 
+     </div>
+     {% else %}
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/" id="links">Inicio</a>
+        </li>
+        {% if request.user.profile.tipo_permiso == 'Recepcionista' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/habitaciones" id="links">Dashboard</a>
+        </li>
+        {% elif request.user.profile.tipo_permiso == 'Solicitante' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/proveedores" id="links">Dashboard</a>
+        </li>
+        {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/comedor" id="links">Dashboard</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+         <a class="nav-link" href="/dashboard" id="links">Dashboard</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link"  href="/ayuda" id="links">Ayuda</a>
+        </li>
+      </ul>
+ 
+    
+       <ul class="nav justify-content-end" >
+ 
+        {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.username}}
+           </a>
+           {% if request.user.profile.tipo_permiso == 'Administrador' %}
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+            <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li> 
+            <li><a class="dropdown-item" href="/nuevo_post">Nuevo Post <span class="icon-upload"></span></a></li>        
+            <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+          </ul>
+          {% else %}
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>     
+             <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% endif %}
+
+       {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+ 
+  <!-------------------------------------------Menu usuarios-------------------------------------->
+   {% else %}
+   <div id="menu_mobile" >
+     {% if request.user.is_authenticated %}
+   <nav class="navbar navbar-white" id="barra_mobile">
+     <div class="container">
+       <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+       <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+       <a href="/all_rooms" class="icon-bed" title="Habitaciones" id="opciones_mobile"></a>
+       <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="icon-menu-2" ></span>
+       </button>
+     </div>
+   </nav>
+   <div class="collapse" id="navbarToggleExternalContent">
+     <div class="mobile_options">
+       <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/ayuda" id="xd">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/mis_reservas" id="xd">
+              Mis Reservas <span class="icon-address-book-o" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/mis_facturas" id="xd">
+               Mis Facturas <span class="icon-newspaper" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+         <div class="accordion-item">
+           <h2 class="accordion-header" id="flush-headingOne">
+             <a class="accordion-button collapsed" href="/logout" id="xd" >
+               Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+             </a>
+           </h2>
+         </div>
+ 
+       </div>
+ 
+     </div>
+     {% else %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+ 
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-menu-2"></span>
+         </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+      
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+    
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/login" id="xd">
+                 Iniciar Sesión  <span class="icon-user-circle-o" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+         </div>
+   
+       </div>
+ 
+     {% endif %}
+   </div>
+ 
+ </div>
+   <nav class="navbar navbar-white" id="barra_2" >
+     <div class="container">
+       <a class="navbar-brand" href="/" id="nombre_empresa">
+       <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+       | Hostal "Doña Clarita"
+       </a>
+ 
+      
+       {% if request.user.is_authenticated %}
+       <ul class="nav justify-content-center">
+         <li class="nav-item">
+           <a class="nav-link" href="/" id="links">Inicio</a>
+         </li>
+         
+        <li class="nav-item">
+          <a class="nav-link" href="/all_rooms" id="links">Habitaciones</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="/ayuda" id="links">Ayuda</a>
+        </li>
+       </ul>
+       {% else %}
+ 
+       {% endif %}
+      
+       <ul class="nav justify-content-end" >
+ 
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+             Hola, {{request.user.username}}
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+             <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>
+             <li><a class="dropdown-item" href="/mis_reservas">Mis Reservas <span class="icon-address-book-o"></span></a></li>      
+             <li><a class="dropdown-item" href="/mis_facturas">Mis Facturas <span class="icon-newspaper"></span></a></li>   
+             <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+           </ul>
+         </li>
+         {% else %}
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Invitado
+           </a>
+          
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+             <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+           </ul>
+         </li>
+       </ul>
+       {% endif %}
+     </div>
+   </nav>
+   {% endif %}
+ </header>
+   <br>
+   <br>
+   <br>
+<body class="body">
+
+  <div class="container" id="caja_detalle">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="carousel slide" data-ride="carousel" id="carousel-1">
+                <div class="carousel-inner" role="listbox" >
+                    <div class="carousel-item active">
+                      {% if not room.imagen_habitacion %}
+                      <a href="{% static 'img/no_image.png' %}">
+                        <img class="img-thumbnail w-100 d-block" src="{% static 'img/no_image.png' %}" alt="Slide Image" loading="lazy" id="room_img">
+                      </a>               
+                      {% else %}
+                      <a href="{{room.imagen_habitacion.url}}">
+                        <img class="img-thumbnail w-100 d-block" src="{{room.imagen_habitacion.url}}" alt="Slide Image" loading="lazy" id="room_img">
+                      </a>
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4 style="padding: 8px;">Habitación {{room.tipo_habitacion}}</h4>
+            <div class="price"  style="padding: 8px;"><span class="mr-2">$ {{room.precio}}</span></div>
+            <div class="d-flex flex-row">
+                <div class="icons mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div><span  style="padding: 8px;"><span style="color:red; font-weight: 500;">*</span> Este es solo el precio por la habitación, No incluye el valor por lo dias en el hostal. <br>
+                   el valor total se verá reflejado en el final de su factura.</span>
+            </div>
+            <div class="d-flex align-items-center mt-4 offers mb-1"><i class="fa fa-check-square-o mt-1"></i><span class="ml-1 icon-home-1" style="padding: 8px;" id="subtitulos">N° Habitación:</span><span class="ml-1">{{room.numero_habitacion}}<br></span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1"></i><span class="ml-1 icon-users-1" style="padding: 8px;" id="subtitulos"> Capacidad Persona(s):</span><span class="ml-1">{{room.cantidad_personas}}<br></span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1"></i><span class="ml-1 icon-list-numbered " style="padding: 8px;" id="subtitulos">Cantidad Cama(s):</span><span class="ml-1">{{room.cantidad_camas}}<br></span></div>
+            <div class="d-flex align-items-center offers"><i class="fa fa-check-square-o mt-1"></i><span class="ml-1 icon-bed" style="padding: 8px;" id="subtitulos"> Tipo Cama(s):</span><span class="ml-1">{{room.tipo_cama}}<br></span></div>
+            <div class="d-flex align-items-center mt-5 delivery"><i class="fa fa-map-marker"></i><span class="ml-2" id="subtitulos">Estado<br></span><span class="ml-2 mr-2">|<br></span>
+              {% if room.estado == 'Disponible' %}
+              <span class="badge badge-success" style="padding: 5px; border-radius: 30px;">{{room.estado}}<br></span>
+              {% elif room.estado == 'Ocupada'%}
+              <span class="badge badge-warning" style="padding: 5px; border-radius: 30px;">{{room.estado}}<br></span>
+              {% else %}
+              <span class="badge badge-danger" style="padding: 5px; border-radius: 30px;">{{room.estado}}<br></span>
+              {% endif %}
+            </div>
+
+            <hr>
+            <div class="d-flex align-items-center mt-2"> <label class="radio"> <input name="ram"> <span id="iconos" class="icon-wifi"></span> </label> <label class="radio"> <input  name="ram" > <span id="iconos" class="icon-food"></span> </label> <label class="radio"> <input name="ram"><span id="iconos" class="icon-phone-1"></span> </label> </div>
+            <div><span  style="padding: 8px;" class="font-weight-bold">Descripción:</span><span class="ml-2" >{{room.accesorios}}</span></div>
+            <div class="mt-3">
+              {% if room.estado == 'Ocupada' or room.estado == 'En Mantenimiento'  %}
+              <a class="btn btn-dark mr-2 disabled" type="button" href="/all_rooms" style="background: gray;" id="btn_reservar">Reservar <span class="icon-block-1"></span></a>
+              <a class="btn btn-success" type="button" href="/all_rooms" id="btn_volver">Volver</a>
+              {% else %}
+              <a class="btn btn-dark mr-2" type="button" href="{% url 'reservar' room.pk %}" id="btn_reservar">Reservar <span class="icon-calendar-1"></span></a>
+              <a class="btn btn-success" type="button" href="/all_rooms" id="btn_volver">Volver</a>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+</div>    
+</body>
+{% endif %}
+</html>

@@ -82,8 +82,14 @@ thead {
     box-shadow: none;
 }
 
+#ver_mas:not(hover) {
+    transition: all 0.2s;
+}
+
+
 #ver_mas:hover {
     color: #084B8A;
+    transform: scale(130%);
 }
 
  
@@ -97,8 +103,18 @@ thead {
     box-shadow: none;
 }
 
+#editar:not(hover) {
+    transition: all 0.2s;
+}
+
 #editar:hover {
-    color: #0A2229;
+    color: #0A2229;  
+    transform: scale(130%);
+}
+
+#editar:focus {
+    color: #0A2229;  
+    transform: scale(130%);
 }
 
 #eliminar {
@@ -110,7 +126,12 @@ thead {
     background: transparent;
 }
 
+#eliminar:not(hover) {
+    transition: all 0.2s;
+}
+
 #eliminar:hover {
+    transform: scale(130%);
     color: #B40404;
 }
 
@@ -119,6 +140,22 @@ thead {
     background:#0B4C5F;
     box-shadow: none;
     border: none;
+    font-weight: 500;  
+}
+
+#btn_add:hover {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+#btn_rooms {
+    background:#04B4AE;
+    box-shadow: none;
+    border: none;
+    font-weight: 500;  
+}
+
+#btn_rooms:hover {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
 }
 
 #btn_print {
@@ -126,6 +163,11 @@ thead {
     color: #fff;
     box-shadow: none;
     border: none;
+    font-weight: 500;  
+}
+
+#btn_print:hover {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
 }
 
 #btn_print:active {
@@ -135,7 +177,12 @@ thead {
 #btn_filter {
     box-shadow: none;
     border: none;
-    background: orangered;    
+    background: orangered;  
+    font-weight: 500;  
+}
+
+#btn_filter:hover {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
 }
 
 #btn_filter:active {
@@ -210,4 +257,63 @@ thead {
 #btn_cambios:hover {
     transition: all 0.3s;
     box-shadow: 2px 2px 3px gray;
+}
+
+#btn_crear_factura {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    width: 40%;
+    background: #FF4000;
+    color: #fff;
+    border: none;
+    box-shadow: none
+}
+
+#btn_crear_factura:hover {
+    transition: all 0.3s;
+    box-shadow: 2px 2px 3px gray;
+}
+
+#btn_calcular {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    width: 40%;
+    background: #0B4C5F;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+}
+
+#btn_calcular:hover {
+    transition: all 0.3s;
+    box-shadow: 2px 2px 3px gray;
+}
+
+
+#precio {
+    box-shadow: none;  
+}
+
+
+#options {
+    border-radius: 0%;
+    border: none;
+    padding: 0%;
+}
+  
+
+#options a {
+    padding: 0%;
+    font-weight: 500;
+    text-align: center;
+    background: #D8D8D8;
+    padding: 10px;
+}
+
+#options a:hover {
+    transition:  all 0.3s;
+    color: #fff;
+    background: #2E2E2E;
 }

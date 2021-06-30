@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  {% load humanize %}
+  {% load crispy_forms_tags %}
+  <link type="text/css" rel="stylesheet" href="{% static 'css/index_proveedor.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/error403.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous"> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+
+  <title>Hostal "Doña Clarita"</title>
+</head>
+{% if request.user.profile.tipo_permiso == 'Proveedor' %}  
+<header>
+    <nav class="navbar navbar-white" id="barra_menu_pro">
+        <div class="container"> <a class="navbar-brand" href="/index_proveedor">
+                <div class="d-flex">
+                    <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+                    <div class="ms-3 d-flex flex-column">
+                        <div class="h4" style="color: #fff;">Hostal "Doña Clarita"</div>
+                        <div class="fs-6"  style="color: #fff;">Proveedores</div>
+                    </div>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="mynav">
+            </div>
+        </div>
+    </nav>
+</header>
+
+<body style="background: #f2f2f2;">
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-3 my-lg-0 my-md-1">
+            <div id="sidebar" class="bg-purple">
+                <div class="h4 text-white">Cuenta</div>
+                <ul>
+                    <li id="links_options"> 
+                        <a href="/index_proveedor" class="text-decoration-none d-flex align-items-start">
+                            <div class="fas fa-box-open pt-2 me-3"></div>
+                            <div class="d-flex flex-column">
+                                <div class="link">Mis Ordenes</div>
+                                <div class="link-desc">Vista de manejo de pedidos</div>
+                            </div>
+                        </a> 
+                    </li>
+                    <li id="links_options">
+                         <a href="/perfil" class="text-decoration-none d-flex align-items-start">
+                            <div class="far fa-user pt-2 me-3"></div>
+                            <div class="d-flex flex-column">
+                                <div class="link">Mi Perfil</div>
+                                <div class="link-desc">Cambiar tú perfil, detalles y contraseña</div>
+                            </div>
+                        </a> 
+                    </li>
+                    <li id="links_options"> 
+                        <a href="/ayuda" class="text-decoration-none d-flex align-items-start">
+                            <div class="fas fa-headset pt-2 me-3"></div>
+                            <div class="d-flex flex-column">
+                                <div class="link">Ayuda y Soporte</div>
+                                <div class="link-desc">Contacto para ayuda y soporte</div>
+                            </div>
+                        </a> 
+                    </li>
+                    <hr style="color: #fff;">
+                    <li id="links_options"> 
+                        <a href="/logout" class="text-decoration-none d-flex align-items-start">
+                            <div class="fas icon-logout pt-2 me-3"></div>
+                            <div class="d-flex flex-column">
+                                <div class="link">Cerrar Sesión</div>
+                                <div class="link-desc">Salir de la sesión</div>
+                            </div>
+                        </a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-9 my-lg-0 my-1">
+            <div id="main-content" class="bg-white border">
+                <div class="d-flex flex-column">
+                    <div class="h5">Hola, {{request.user.username}}</div>
+                </div>
+                <hr>
+                <div class="container">
+                    <br>
+                    <form  method="POST"  enctype="multipart/form-data" novalidate>
+                  
+                        {% csrf_token %}
+                        <div class="mb-5 col-12">
+                          <h3 style="text-align: center;">Estado Pedido #{{order.id}}</h3>
+                        </div>
+                      
+                        <div class="mb-3 col-12">
+                          {{ form }}
+                        </div>
+                        
+                        <div class="d-grid gap-2 col-9 mx-auto">
+                          <button  class="btn btn-primary" id="btn_cambios" type="submit" onClick="return confirm('¿ Seguro que quieres cambiar el estado del pedido ?');">Cambiar Estado</button>
+                        </div>
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+</body>
+{% else %}
+
+<link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
+<body class="body_error">
+  <use>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" class="whistle">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+<path d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z"/><path d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z"/><path d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z"/></g></g>
+</svg>
+</use>
+<h1 style=" color: #facf5a;">403</h1>
+<h2 style="color: #455d7a;">No Esta Vez, Acceso Prohibido!</h2>
+<div class="container">
+  <a href="/" id="back">Volver a Casa</a>
+</div>
+</body>
+
+
+{% endif %}
+
+
+</html>

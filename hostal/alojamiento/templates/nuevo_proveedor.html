@@ -8,8 +8,8 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/habitaciones.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/error403.css' %}">
 
-  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
     {% endfor %}
   {% endif %}
 </div>
-{% if request.user.username == 'Admin' %}
+{% if request.user.profile.tipo_permiso == 'Administrador' or request.user.profile.tipo_permiso == 'Solicitante'  %}
 <body>
   <svg style="display:none;">
     <symbol id="logo" viewBox="0 0 140 59">
@@ -125,60 +125,20 @@
       </button>
       <ul class="admin-menu list-group" >
         <li class="menu-heading">
-          <h3>admin</h3>
+          <h3>adminitración</h3>
         </li>
+
+        {% if request.user.profile.tipo_permiso == 'Solicitante' %}
+
         <li>
-          <a href="/dashboard" title="Usuarios" id="links" class="icon-users-1">
-            <span  title="Usuarios" style="margin-left: 8px;">Usuarios</span>
-          </a>
-        </li>
-        <li>
-          <a href="/habitaciones" title="Habitaciónes" id="links" class="icon-home-2">
-            <span title="Habitaciónes" style="margin-left: 8px;">Habitaciones</span>
-          </a>
-        </li>
-        <li>
-          <a href="/comedor" title="Comedor" id="links" class="icon-food-1">
-            <span title="Comedor" style="margin-left: 8px;">Comedor</span>
-          </a>
-        </li>
-        <li>
-          <a href="/huespedes" title="Huéspedes" id="links" class="icon-address-book">
-            <span  title="Huéspedes" style="margin-left: 8px;">huéspedes</span>
-          </a>
-        </li>
-        <li>
-          <a href="/proveedores" title="Poveedores" id="links" class="icon-cart-plus">
+          <a href="/proveedores" title="Poveedores" id="links" class="icon-list-numbered">
               <span title="Poveedores" style="margin-left: 8px;">Proveedores</span>
             </a>
           </a>
         </li>
+
         <li>
-          <a href="/solicitud_reservas" title="Solicitudes Reserva" id="links" class="icon-calendar">
-              <span  title="Solicitudes Reserva" style="margin-left: 8px;">Solicitudes R.</span>
-            </a>
-          </a>
-        </li>
-        <li>
-          <a href="/facturas" title="Facturas" id="links" class="icon-newspaper">
-              <span title="Facturas" style="margin-left: 8px;">Facturas</span>
-            </a>
-          </a>
-        </li>
-        <li>
-          <a href="/orden_compras" title="Orden de compras" id="links" class="icon-tag">
-              <span title="Orden de compras" style="margin-left: 8px;">Orden de compras</span>
-            </a>
-          </a>
-        </li>
-        <li>
-          <a href="/empleados" title="Empleados Hostal" id="links" class="icon-user-circle-o">
-              <span  title="Empleados Hostal"  style="margin-left: 8px;">Empleados</span>
-            </a>
-          </a>
-        </li>
-        <li>
-          <a href="/order_pedido" title="Pedidos" id="links" class="icon-list-bullet">
+          <a href="/orden_pedido" title="Pedidos" id="links" class="icon-cart-plus">
               <span  title="Pedidos" style="margin-left: 8px;">Orden de Pedido</span>
             </a>
           </a>
@@ -189,6 +149,75 @@
             </a>
           </a>
         </li>
+
+        {% else %}
+
+        <li>
+          <a href="/dashboard" title="Usuarios" id="links" class="icon-home-2">
+            <span  title="Usuarios" style="margin-left: 8px;">Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a href="/usuarios" title="Usuarios" id="links" class="icon-users">
+            <span  title="Usuarios" style="margin-left: 8px;">Usuarios</span>
+          </a>
+        </li>
+        <li>
+          <a href="/habitaciones" title="Habitaciónes" id="links" class="icon-bed">
+            <span title="Habitaciónes" style="margin-left: 8px;">Habitaciones</span>
+          </a>
+        </li>
+        <li>
+          <a href="/comedor" title="Comedor" id="links" class="icon-food">
+            <span title="Comedor" style="margin-left: 8px;">Comedor</span>
+          </a>
+        </li>
+        <li>
+          <a href="/huespedes" title="Huéspedes" id="links" class="icon-address-book">
+            <span  title="Huéspedes" style="margin-left: 8px;">Huéspedes</span>
+          </a>
+        </li>
+        <li>
+          <a href="/proveedores" title="Poveedores" id="links" class="icon-list-numbered">
+              <span title="Poveedores" style="margin-left: 8px;">Proveedores</span>
+            </a>
+          </a>
+        </li>
+        <li>
+          <a href="/facturas" title="Facturas" id="links" class="icon-newspaper">
+              <span title="Facturas" style="margin-left: 8px;">Facturas</span>
+            </a>
+          </a>
+        </li>
+        <li>
+          <a href="/orden_compras" title="Orden de compras" id="links" class="icon-calendar-1">
+              <span title="Orden de compras" style="margin-left: 8px;">Orden de Compras</span>
+            </a>
+          </a>
+        </li>
+        <li>
+          <a href="/empleados" title="Empleados Hostal" id="links" class="icon-user-circle-o">
+              <span  title="Empleados Hostal"  style="margin-left: 8px;">Empleados</span>
+            </a>
+          </a>
+        </li>
+        <li>
+          <a href="/orden_pedido" title="Pedidos" id="links" class="icon-cart-plus">
+              <span  title="Pedidos" style="margin-left: 8px;">Orden de Pedido</span>
+            </a>
+          </a>
+        </li>
+        <li>
+          <a href="/recepcion_productos" title="Recepción Porductos" id="links" class="icon-archive">
+              <span title="Recepción Porductos"  style="margin-left: 8px;">Recepción</span>
+            </a>
+          </a>
+        </li>
+        {% endif %}
+
+        <div class="container" >
+          <hr style="background-color: #fff;">
+        </div>
 
         <li>
           <a href="/logout" id="links" class="icon-logout">
@@ -218,7 +247,11 @@
   
       </form>
       <div class="admin-profile" >
-        <span class="greeting">Hola, {{request.user.first_name}}</span>
+        {% if user.profile.tipo_permiso == 'Administrador' %}
+        <span class="greeting">Hola, {{request.user.username}} <span class="icon-crown-plus" style="color: #FFBF00;"></span></span>
+        {% else %}
+        <span class="greeting">Hola, {{request.user.username}}</span>
+        {% endif %}
         <div class="notifications">
           <img class="imagen_perfil" src="{{request.user.profile.foto_perfil.url}}" alt="">
         </div>
@@ -230,7 +263,7 @@
     
       {% csrf_token %}
       <div class="mb-5 col-12">
-        <h1 class="sub">Nueva Proveedor</h1>
+        <h1 class="sub">Nuevo Proveedor</h1>
       </div>
     
       <div class="mb-3 col-12">
@@ -270,7 +303,15 @@
 <h1 style=" color: #facf5a;">403</h1>
 <h2 style="color: #455d7a;">No Esta Vez, Acceso Prohibido!</h2>
 <div class="container">
-<a href="/" id="back">Volver a Casa</a>
+  {% if request.user.profile.tipo_permiso == 'Recepcionista' %}
+  <a href="/habitaciones" id="back">Volver a Casa</a>
+  {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+  <a href="/comedor" id="back">Volver a Casa</a>
+  {% elif request.user.profile.tipo_permiso == 'Proveedor' %}
+  <a href="/index_proveedor" id="back">Volver a Casa</a>
+  {% else%}
+  <a href="/" id="back">Volver a Casa</a>
+  {% endif %}
 </div>
 </body>
 

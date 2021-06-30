@@ -1,0 +1,135 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background: url("/static/img/login_pro.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+#titulo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#sub {
+  font-weight: 500;
+  color: #A4A4A4;
+  font-size: 14px;
+  margin: auto;
+  margin-bottom: 4px;
+  display: block;
+  width: 70%;
+}
+
+
+#username {
+  padding: 11px 5px;
+  border-radius: 0%;
+  width: 70%;
+  margin: auto;
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+  font-size: 15px;
+  box-shadow: none;
+  background: transparent;
+ 
+}
+
+#username:focus {
+  transition: all 0.3s;
+  box-shadow: 2px 2px 3px gray ;
+  background: #f2f2f2;
+}
+
+#username::placeholder {
+  color: #A4A4A4;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+#password {
+  padding: 11px 5px;
+  border-radius: 0%;
+  width: 70%;
+  margin: auto;
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+  font-size: 15px;
+  box-shadow: none;
+  background: transparent;
+  
+}
+
+#password:focus {
+  transition: all 0.3s;
+  box-shadow: 2px 2px 3px gray ;
+  background: #f2f2f2;
+}
+
+#password::placeholder {
+  color: #A4A4A4;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+#btn_login {
+  border-radius: 0%;
+  padding: 10px ;
+  margin: auto;
+  display: block;
+  width: 65%;
+  font-weight: 500;
+  font-size: 18px;
+  background: crimson;
+  border: 1px solid transparent;
+
+}
+
+#btn_login:hover {
+  transition: all 0.3s;
+  background: transparent;
+  color: crimson;
+  border-color: crimson;
+}
+
+#link{
+  text-decoration: none;
+  color: #A4A4A4;
+  font-weight: 500;
+  display: block;
+  margin: auto;
+}
+
+#link:hover {
+  transition: all 0.3s;
+  color: #000;
+  text-decoration: underline;
+
+}
+
+#btn_close {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  outline-style: none;  
+  color: #fafafa;
+  cursor: pointer;
+}
+
+#btn_close:hover {
+  transition: all 0.3s;
+  color: #1c1c1c;
+}
+
+#alerta {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+  border: none;
+  border-radius: 0%;
+}

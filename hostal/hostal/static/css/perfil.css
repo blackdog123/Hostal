@@ -1,135 +1,406 @@
-.body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #f2f2f2;    
-}
-.main-body {
-    padding: 15px;
-}
-.card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+.body {
+    background-color: #f2f2f2;
+
 }
 
-.card {
+@media(min-width:993px) {
+    .body {
+        margin-top: 4px;
+    }
+}
+/*social */
+.card-one {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
+}
+.card {
+    margin-bottom: 35px;
+    box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
+    border: none;
 }
 
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
+.follower-wrapper li {
+    list-style-type: none;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
 }
 
-.gutters-sm {
-    margin-right: -8px;
-    margin-left: -8px;
+.social-profile {
+    color: #fff;
 }
 
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
-    padding-right: 8px;
-    padding-left: 8px;
-}
-.mb-3, .my-3 {
-    margin-bottom: 1rem!important;
+.social-profile a {
+    color: #fff;
 }
 
-.bg-gray-300 {
-    background-color: #e2e8f0;
-}
-.h-100 {
-    height: 100%!important;
-}
-.shadow-none {
-    box-shadow: none!important;
+.social-profile {
+    position: relative;
+    margin-bottom: 150px;
 }
 
-#profile_photo {
-    border: 4px solid #6E6E6E;
-    border-radius: 50%;
+.social-profile .user-profile {
+    position: absolute;
+    bottom: -75px;
     width: 150px;
-    height: 142px;
+    height: 150px;
+    border-radius: 50%;
+    left: 50px;
 }
 
-#table {
-    border: 1px solid #b8b8b8;
-    background: #fafafa;  
+.social-nav {
+    position: absolute;
+    bottom: 0;
 }
 
-#btn_editar_perfil {
-    margin-top: 15px;
-    border-radius: 3px;
-    border: none;
-    background: #FF4000;
-}
-
-#btn_editar_perfil:hover {
-    box-shadow: 2px 2px 3px gray;
-}
-
-#ver_mas {
-    border: none;
-    background: transparent;
-    font-weight: 500;
-    color: #045FB4;
+.social-prof {
+    color: #333;
     text-align: center;
-    box-shadow: none;
 }
 
-#ver_mas:hover {
-    color: #084B8A;
+.social-prof .wrapper {
+    width: 70%;
+    margin: auto;
+    margin-top: -100px;
 }
 
- 
+.social-prof img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #fff;
+    /*border: 10px solid #70b5e6ee;*/
+}
+
+.social-prof h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.social-prof p {
+    font-size: 18px;
+}
+
+.social-prof .nav-tabs {
+    border: none;
+}
+
+.card .nav>li {
+    position: relative;
+    display: block;
+}
+
+.card .nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    font-weight: 300;
+    border-radius: 4px;
+}
+
+.card .nav>li>a:focus,
+.card .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.card .s-nav>li>a.active {
+    text-decoration: none;
+    background-color: #3afe;
+    color: #fff;
+}
+
+.text-blue {
+    color: #3afe;
+}
+
+ul.friend-list {
+    margin: 0;
+    padding: 0;
+}
+
+ul.friend-list li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+ul.friend-list li:hover {
+    background: rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+ul.friend-list .left img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+ul.friend-list li {
+    padding: 10px;
+}
+
+ul.friend-list .right h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+ul.friend-list .right p {
+    font-size: 11px;
+    color: #6c757d;
+    margin: 0;
+}
+
+.social-timeline-card .dropdown-toggle::after {
+    display: none;
+}
+
+.info-card h4 {
+    font-size: 15px;
+}
+
+.info-card h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.social-about .social-info {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.social-about p {
+    margin-bottom: 20px;
+}
+
+.info-card i {
+    color: #3afe;
+}
+
+.card-one {
+    position: relative;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
+}
+
+.card-one .header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #3afe;
+}
+
+.card-one .header::before,
+.card-one .header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: inherit;
+}
+
+.card-one .header::before {
+    -webkit-transform: skewY(-8deg);
+    transform: skewY(-8deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.card-one .header::after {
+    -webkit-transform: skewY(8deg);
+    transform: skewY(8deg);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.card-one .header .avatar {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: -50px;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+    border: 3px solid #fff;
+}
+
+.card-one .header .avatar img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: auto;
+}
+
+.card-one h3 {
+    position: relative;
+    margin: 80px 0 30px;
+    text-align: center;
+}
+
+.card-one h3::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 1px;
+    background: #000;
+}
+
+.card-one .desc {
+    padding: 0 1rem 2rem;
+    text-align: center;
+    line-height: 1.5;
+    color: #777;
+}
+
+.card-one .contacts {
+    width: 200px;
+    max-width: 100%;
+    margin: 0 auto 3rem;
+}
+
+.card-one .contacts a {
+    display: block;
+    width: 33.333333%;
+    float: left;
+    text-align: center;
+    color: #c8c;
+}
+
+.card-one .contacts a:hover {
+    color: #333;
+}
+
+.card-one .contacts a:hover .fa::before {
+    color: #fff;
+}
+
+.card-one .contacts a:hover .fa::after {
+    width: 100%;
+    height: 100%;
+}
+
+.card-one .contacts a .fa {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.card-one .contacts a .fa:before {
+    position: relative;
+    z-index: 1;
+}
+
+.card-one .contacts a .fa::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: #c8c;
+    transition: width .3s, height .3s;
+}
+
+.card-one .contacts a:last-of-type .fa {
+    line-height: 36px;
+}
+
+.card-one .footer {
+    position: relative;
+    padding: 1rem;
+    background-color: #3afe;
+    text-align: center;
+}
+
+.card-one .footer a {
+    padding: 0 1rem;
+    color: #e2e2e2;
+    transition: color .4s;
+}
+
+.card-one .footer a:hover {
+    color: #c8c;
+}
+
+.card-one .footer::before {
+    content: '';
+    position: absolute;
+    top: -27px;
+    left: 50%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom-color: #3afe;
+}
+
+#gallery li {
+    width: 24%;
+    float: left;
+    margin: 6px;
+   
+}
+
 #editar {
-    border: none;
+    text-decoration: none;
     background: transparent;
     font-weight: 500;
-    background: transparent;
-    color: #0B4C5F;
-    text-align: center;
-    box-shadow: none;
+   
 }
 
 #editar:hover {
-    color: #0A2229;
+    transition: all 0.3s;
+    background: #FF4000;
+    color: #fff;
 }
 
-#eliminar {
-    box-shadow: none;
-    border: none;
-    font-weight: 500;
-    color: red;
-    text-align: center;
+#configuracion {
+    text-decoration: none;
     background: transparent;
+    font-weight: 500;
 }
 
-#eliminar:hover {
-    color: #B40404;
+#configuracion:hover {
+    transition: all 0.3s;
+    background: #0B243B;
+    color: #fff;
 }
 
-#titulo {
-    margin-bottom: 15px;
-}
 
+/*end social*/
 
 /** ediatr perfil */
 
 
 #body {
-    background: #fafafa;
+    background: #f2f2f2;
 }
 
 .formulario {
-    max-width: 600px;
+    max-width: 500px;
     margin: auto;
     margin-top: 30px;
     background: #fff;
@@ -140,6 +411,9 @@
 
 #btn_cambios {
     background: #FF4000;
+    width: 60%;
+    
+    margin: auto;
     border: none;
     color: #fff;
 
@@ -160,7 +434,7 @@
     border-radius: 50%;
     border: 5px solid #666;
     background: #fff;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat center top;
 }
 
 #alerta {
@@ -225,4 +499,14 @@
     box-shadow: 2px 2px 3px gray;
 }
 
+#foto_portada {
+    width: 100%;
+    max-height:550px ;
+}
 
+
+#id_password {
+    border: none;
+    width: 100%;
+    margin-bottom: 40px;
+}

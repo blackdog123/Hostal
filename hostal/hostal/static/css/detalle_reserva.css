@@ -1,0 +1,54 @@
+.body{
+    margin-top:20px;
+    background:#f2f2f2;    
+}
+
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+
+
+.card {
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 8px 5px 10px 8px #bbb;
+}
+
+@media(max-width:768px) {
+    .card{
+        width: 98%;
+        box-shadow: none;
+        border-radius: 0%;
+    }
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;  
+}
+
+.card .card-title {
+    position: relative;
+    font-weight: 600;
+    margin-bottom: 10px
+}
+
+ul.list-style-none li {
+    list-style: none
+}
+
+ul.list-style-none li a {
+    color: #673AB7;
+    padding: 8px 0px;
+    display: block;
+    text-decoration: none
+}
+
+.m-t-5 {
+    margin-top: 5px
+}
+
+.w-30px {
+    width: 30px
+}

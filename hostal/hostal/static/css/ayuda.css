@@ -1,0 +1,104 @@
+.body {
+    background: #f2f2f2;
+    
+}
+
+#icons {
+   font-size: 17px;
+   padding: 7px;
+}
+
+#saludo {
+    font-size: 17px;
+}
+
+#titulo {
+    font-weight: 500;
+}
+
+#caja_madre {
+    width: 700px;
+    margin: auto;
+    margin-top: 60px;
+}
+
+#mas_ayuda {
+    width: 700px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+
+@media(max-width:768px) {
+    
+    #caja_madre {
+        width: 98%;
+    }
+    #mas_ayuda {
+        width: 98%;
+    }
+}
+
+
+#accordionFlushExample {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 8%);
+}
+
+#section_help {
+    box-shadow: none;
+    color: #6E6E6E;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+#section_help:focus {
+    color: #2E9AFE;
+    border-left-color: #2E9AFE;
+}
+
+#section_help:hover {
+    color: #2E9AFE;
+    border-left-color: #2E9AFE;
+}
+
+#btn_ej {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #0B243B;
+    opacity: 0.9;
+    border: none;
+    box-shadow: none;
+}
+
+#link_ej {
+    text-decoration: none;
+    color: #04B486;
+}
+
+
+#btn_contactos {
+    width: 100%;
+    padding: 14px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 8%);
+    background-color: #fff;
+    color: #6E6E6E;
+    border: 1px solid transparent;
+    font-weight: 500;
+}
+
+#btn_contactos:hover {
+    transition: all 0.3s;
+    color: #2E9AFE;
+    border-color: #2E9AFE;
+}
+
+#sociales {
+    text-decoration: none;
+}
+
+#sociales:hover {
+    text-decoration: underline;
+}
+
+

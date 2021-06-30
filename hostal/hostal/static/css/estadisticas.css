@@ -1,0 +1,29 @@
+
+#tbody {
+    border-color: #E6E6E6;   
+}
+#encabezados {
+    border: none;
+    background: var(--page-header-bgColor);
+    color: #fff;
+    font-size: 17px;
+    padding: 2%;
+    
+}
+
+#tablas {
+    margin: auto;
+    padding: 0%;
+    margin-top: 15px;
+    border-radius: 5px;
+    background: #fff;
+    border: none;
+}
+
+
+#info {
+    border: none;
+    font-weight: 500;
+    font-size: 17px;
+    
+}

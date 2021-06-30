@@ -1,0 +1,272 @@
+.body {
+    background-color: #eee;
+}
+
+.t-products {
+    background-image: linear-gradient(to right top, #5629c0, #5625cb, #5620d5, #551ae0, #5412eb);
+    color: #fff;
+    border-radius: 3px
+}
+
+.processor {
+    background-color: #fff;
+    margin-top: 5px;
+    border-bottom: 1px solid #eee
+}
+
+.brand {
+    background-color: #fff;
+    border-bottom: 1px solid #eee
+}
+
+.type {
+    background-color: #fff
+}
+
+.product {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative
+}
+
+.about span {
+    color: #5629c0;
+    font-size: 16px
+}
+
+.cart-button button {
+    font-size: 12px;
+    color: #fff;
+    background-color: #5629c0;
+    height: 38px
+}
+
+
+.product_fav i {
+    line-height: 40px;
+    color: #5629c0;
+    font-size: 15px
+}
+
+
+.about {
+    margin-top: 12px
+}
+
+.off {
+    position: absolute;
+    right: 85%;
+    top: -15px;
+    width: 80px;
+    height: 30px;
+    line-height: 8px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #31B404;
+    box-shadow: 2px 2px 3px gray;
+}
+
+
+#caja_producto {
+    max-width: 400px;
+    border: 1px solid #D8D8D8;
+    border-radius: 0%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#img_room {
+    border: none;
+    padding: 0%;
+    border-radius: 0%;
+    margin-bottom: 30px;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+
+@media(max-width:767px) {
+    #caja_producto {
+        width: 95%;
+    }
+}
+
+
+#caja_producto:hover {
+    border-color: #A4A4A4;
+    box-shadow: 5px 10px 5px #bbb;
+    transform: scale(102%);
+}
+
+#caja_producto:not(hover) {
+    transition: all 0.3s;
+
+}
+
+#caja_filtro {
+   background: transparent;
+}
+
+@media(max-width:1270px) {
+    #caja_filtro {
+        display: none;
+    }
+}
+
+
+#precio {
+    color: #A4A4A4;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#btn_reservar {
+    width: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    background: #0B243B;
+    opacity: 0.9;
+    border: none;
+    box-shadow: none;
+}
+
+#btn_reservar:hover {
+    background: #ff4000;
+}
+
+
+#btn_ver_mas {
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 50%;
+    color: #0B243B;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 12%); 
+}
+
+#btn_ver_mas:hover {
+    transition: all 0.3s;
+    background: #0B243B;
+    color: #fff;  
+}
+
+@media(max-width:1250px) {
+    #btn_reservar {
+        width: 70%;
+        font-size: 10px;
+      
+    }
+}
+
+@media(max-width:767px) {
+    #btn_reservar {
+        width: 50%;
+        font-size: 14px;
+      
+    }
+}
+
+
+#formulario {
+    padding: 20px;
+    margin: auto;
+}
+
+
+#id_tipo_habitacion {
+    width: 90%;
+    margin: auto;
+    display: block;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 30px;
+    text-align: center;
+    outline-style: none;
+    border: 1px solid #BDBDBD;
+}
+
+#id_tipo_habitacion:hover {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+#id_tipo_habitacion:focus {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+#id_tipo_cama {
+    width: 90%;
+    margin: auto;
+    display: block;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 30px;
+    text-align: center;
+    outline-style: none;
+    border: 1px solid #BDBDBD;
+}
+
+#id_tipo_cama:hover {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+#id_tipo_cama:focus {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+#id_precio {
+    width: 90%;
+    margin: auto;
+    display: block;
+    padding: 8px;
+    border-radius: 30px;
+    text-align: center;
+    outline-style: none;
+    border: 1px solid #BDBDBD;
+}
+
+#id_precio:hover {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+#id_precio:focus {
+    transition: all 0.3s;
+    border-color: #2E9AFE;
+}
+
+
+#btn_buscar {
+    width: 50px;
+    height: 48px;
+    margin: auto;
+    display: block;
+    margin-top: 15px;
+    border-radius: 50%;
+    background: #A4A4A4;
+    color: #fff;
+    border: none ;
+}
+
+#btn_buscar:hover {
+    background: #2E9AFE;
+}
+
+
+#all {
+    margin-top: 30px;
+}
+
+
+
+
+
+
+

@@ -44,6 +44,9 @@
     .footer-dark .item.text {
       margin-bottom:0;
     }
+    p {
+      font-size: 14px;
+    }
   }
   
   .footer-dark .item.text p {

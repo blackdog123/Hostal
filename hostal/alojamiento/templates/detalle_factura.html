@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Hostal "Doña Clarita"</title>
 </head>
-{% if user.username == ticket.from_user.username or user.username == ticket.to_user.username %}
-<body >
+{% if user.username == ticket.remitente.username or user.username == ticket.receptor.username or request.user.profile.tipo_permiso == 'Recepcionista' %}
+<body class="body" style="margin-top: 50px;">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <div class="container">
+    <div class="container" style="max-width: 800px;">
        <div class="col-md-12">
           <div class="invoice">
              <!-- begin invoice-company -->
              <div class="invoice-company text-inverse f-w-600">
                 <span class="pull-right hidden-print">
-                <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i>Imprimir</a>
+                <a  onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i>Imprimir</a>
                 </span>
                Hostal "Doña Clarita"
              </div>
@@ -31,17 +31,17 @@
                    <address class="m-t-5 m-b-5">
                       <strong class="text-inverse">Datos Hostal</strong><br>
                      Hostal "Doña Clarita"<br>
-                      Email : {{ticket.from_user.email}}<br>
-                      Teléfono: {{ticket.from_user.profile.telefono}}<br>
+                      Email : {{ticket.remitente.email}}<br>
+                      Teléfono: {{ticket.remitente.profile.telefono}}<br>
                    </address>
                 </div>
                 <div class="invoice-to">
                    <small>Para</small>
                    <address class="m-t-5 m-b-5">
                       <strong class="text-inverse">Datos Comprador</strong><br>
-                      {{ticket.to_user.first_name}}<br>
-                      Email : {{ticket.to_user.email}}<br>
-                      Teléfono: {{ticket.to_user.profile.telefono}}<br>
+                      {{ticket.receptor.first_name}}<br>
+                      Email : {{ticket.receptor.email}}<br>
+                      Teléfono: {{ticket.receptor.profile.telefono}}<br>
                    </address>
                 </div>
                 <div class="invoice-date">
@@ -49,7 +49,7 @@
                    <div class="date text-inverse m-t-5">{{ticket.fecha_boleta}}</div>
                    <div class="invoice-detail">
                       #0{{ticket.id}}<br>
-                      Servicio Productos
+                
                    </div>
                 </div>
              </div>
@@ -69,48 +69,46 @@
                       <tbody>
                          <tr>
                             <td>
-                               <span class="text-inverse">Tipo de Camas y/o Servicio</span><br>
+                               <span class="text-inverse">Habitación</span><br>
                             </td>
-                            <td class="text-center">{{ticket.tipo_habitacion}}</td>
-                            <td class="text-right">$ {{ticket.precio_servivcio}}</td>
+                            <td class="text-center">N° {{ticket.habitacion_reservada.numero_habitacion}} - {{ticket.habitacion_reservada.tipo_habitacion}} -
+                              {{ticket.habitacion_reservada.tipo_cama}}
+                            </td>
+                            <td class="text-right">$ {{ticket.precio_servicio}}</td>
                          </tr>
                          <tr>
                             <td>
-                               <span class="text-inverse">Cantidad de Noches</span><br>
+                               <span class="text-inverse">Cantidad de Dias</span><br>
                             </td>
-                            <td class="text-center">{{ticket.noches}}</td>
-                            <td class="text-right">$ {{ticket.precio_noches}}</td>
+                            <td class="text-center">{{ticket.cantidad_dias}}</td>
+                            <td class="text-right">$ {{ticket.precio_dias}}</td>
                          </tr>
-                         <tr>
-                            <td>
-                               <span class="text-inverse">Cantidad Personas</span><br>
-                            </td>
-                            <td class="text-center">{{ticket.personas}}</td>
-                            <td class="text-right">$ {{ticket.precio_personas}}</td>
-                         </tr>
+                   
                       </tbody>
                    </table>
                 </div>
                 <!-- end table-responsive -->
                 <!-- begin invoice-price -->
                 <div class="invoice-price">
-                   <div class="invoice-price-left">
-                      <div class="invoice-price-row">
-                         <div class="sub-price">
-                       
-                         </div>
-                         <div class="sub-price">
-                            <i class="fa fa-plus text-muted"></i>
-                         </div>
-                         <div class="sub-price">
-                          
-                         </div>
-                      </div>
-                   </div>
-                   <div class="invoice-price-right">
-                      <small>TOTAL</small> <span class="f-w-600">${{ticket.total}}</span>
-                   </div>
-                </div>
+                  <div class="invoice-price-left">
+                     <div class="invoice-price-row">
+                        <div class="sub-price">
+                           <small>SUBTOTAL</small>
+                           <span class="text-inverse">$ {{ticket.subtotal}}</span>
+                        </div>
+                        <div class="sub-price">
+                           <i class="fa fa-plus text-muted"></i>
+                        </div>
+                        <div class="sub-price">
+                           <small>IVA (19%)</small>
+                           <span class="text-inverse">$ {{ticket.iva}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="invoice-price-right">
+                     <small>TOTAL</small> <span class="f-w-600">$ {{ticket.total}}</span>
+                  </div>
+               </div>
                 <!-- end invoice-price -->
              </div>
              <!-- end invoice-content -->
@@ -128,14 +126,15 @@
                 </p>
                 <p class="text-center">
                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> HostalDoñaClarita.com</span>
-                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:{{ticket.from_user.profile.telefono}}</span>
-                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> {{ticket.from_user.email}}</span>
+             
+                   <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> {{ticket.remitente.email}}</span>
                 </p>
              </div>
              <!-- end invoice-footer -->
           </div>
        </div>
     </div>
+    <br>
 </body>
 {% else %}
 

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/ayuda.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostal "Doña Clarita"</title>
+
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
+<!--Menu-->
+<header>
+    <!-------------------------------------------Menu administrador y trabajadores -------------------------------------->
+     {% if request.user.profile.tipo_permiso == 'Administrador' or request.user.profile.tipo_permiso == 'Recepcionista' or request.user.profile.tipo_permiso == 'Solicitante' or  request.user.profile.tipo_permiso == 'Ayudante Cocina' %}  
+     <div id="menu_mobile" >
+       {% if request.user.is_authenticated %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+         <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+         {% if request.user.profile.tipo_permiso == 'Recepcionista' %}
+         <a href="/habitaciones" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+         {% elif request.user.profile.tipo_permiso == 'Solicitante' %}
+         <a href="/proveedores" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+         {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+         <a href="/comedor" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+         {% else %}
+         <a href="/dashboard" class="icon-list-alt" title="Dashboard" id="opciones_mobile"></a>
+         {% endif %}
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-menu-2" ></span>
+        </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+          {% if request.user.profile.tipo_permiso == 'Administrador' %}
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/ayuda" id="xd">
+                 Ayuda <span class="icon-help" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+  
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <a class="accordion-button collapsed" id="xd"  href="/nuevo_post">
+              Nuevo Post <span class="icon-upload" id="icons_mobiles"></span>
+              </a>
+            </h2>
+          </div>
+   
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/logout" id="xd" >
+                 Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+           {% else %}
+           <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <a class="accordion-button collapsed" href="#" id="xd"  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ayuda <span class="icon-help" id="icons_mobiles"></span>
+              </a>
+            </h2>
+          </div>
+  
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <a class="accordion-button collapsed" href="/logout" id="xd" >
+                Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+              </a>
+            </h2>
+          </div>
+          {% endif %}
+         </div>
+   
+       </div>
+       {% else %}
+   
+       {% endif %}
+     </div>
+   
+   </div>
+     <nav class="navbar navbar-white" id="barra_2" >
+       <div class="container">
+         <a class="navbar-brand" href="/" id="nombre_empresa">
+         <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+         | Hostal "Doña Clarita"
+         </a>
+  
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link" href="/" id="links">Inicio</a>
+          </li>
+          {% if request.user.profile.tipo_permiso == 'Recepcionista' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/habitaciones" id="links">Dashboard</a>
+          </li>
+          {% elif request.user.profile.tipo_permiso == 'Solicitante' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/proveedores" id="links">Dashboard</a>
+          </li>
+          {% elif request.user.profile.tipo_permiso == 'Ayudante Cocina' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/comedor" id="links">Dashboard</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+           <a class="nav-link" href="/dashboard" id="links">Dashboard</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link"  href="/ayuda" id="links">Ayuda</a>
+          </li>
+        </ul>
+   
+      
+         <ul class="nav justify-content-end" >
+   
+          {% if request.user.is_authenticated %}
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+               Hola, {{request.user.username}}
+             </a>
+             {% if request.user.profile.tipo_permiso == 'Administrador' %}
+             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+              <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li> 
+              <li><a class="dropdown-item" href="/nuevo_post">Nuevo Post <span class="icon-upload"></span></a></li>        
+              <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+            </ul>
+            {% else %}
+             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+               <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>     
+               <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+             </ul>
+           </li>
+           {% endif %}
+  
+         {% else %}
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Invitado
+             </a>
+            
+             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+               <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+             </ul>
+           </li>
+         </ul>
+         {% endif %}
+       </div>
+     </nav>
+   
+    <!-------------------------------------------Menu usuarios-------------------------------------->
+     {% else %}
+     <div id="menu_mobile" >
+       {% if request.user.is_authenticated %}
+     <nav class="navbar navbar-white" id="barra_mobile">
+       <div class="container">
+        {% if request.user.profile.tipo_permiso == 'Proveedor' %}
+        <a href="/index_proveedor" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+        {% else %}
+         <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+         <a href="/perfil" class="icon-user-circle-o" title="Perfil" id="opciones_mobile"></a>
+         <a href="/all_rooms" class="icon-bed" title="Habitaciones" id="opciones_mobile"></a>
+        {% endif%}
+         <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-menu-2" ></span>
+         </button>
+       </div>
+     </nav>
+     <div class="collapse" id="navbarToggleExternalContent">
+       <div class="mobile_options">
+        {% if request.user.profile.tipo_permiso == 'Proveedor' %}
+  
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a class="accordion-button collapsed" href="/ayuda" id="xd">
+              Ayuda <span class="icon-help" id="icons_mobiles"></span>
+            </a>
+          </h2>
+        </div>
+  
+        {% else %}
+         <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <a class="accordion-button collapsed" href="/ayuda" id="xd">
+                Ayuda <span class="icon-help" id="icons_mobiles"></span>
+              </a>
+            </h2>
+          </div>
+  
+           <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <a class="accordion-button collapsed" href="/mis_reservas" id="xd">
+                Mis Reservas <span class="icon-address-book-o" id="icons_mobiles"></span>
+              </a>
+            </h2>
+          </div>
+  
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/mis_facturas" id="xd">
+                 Mis Facturas <span class="icon-newspaper" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+  
+          {% endif %}
+           <div class="accordion-item">
+             <h2 class="accordion-header" id="flush-headingOne">
+               <a class="accordion-button collapsed" href="/logout" id="xd" >
+                 Cerrar Sesión <span class="icon-logout" id="icons_mobiles"></span>
+               </a>
+             </h2>
+           </div>
+   
+         </div>
+   
+       </div>
+       {% else %}
+       <nav class="navbar navbar-white" id="barra_mobile">
+         <div class="container">
+           <a href="/" class="icon-home-2" title="Home" id="opciones_mobile"></a>
+   
+           <button class="navbar-toggler" id="btn_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="icon-menu-2"></span>
+           </button>
+         </div>
+       </nav>
+       <div class="collapse" id="navbarToggleExternalContent">
+         <div class="mobile_options">
+        
+           <div class="accordion accordion-flush" id="accordionFlushExample">
+      
+             <div class="accordion-item">
+               <h2 class="accordion-header" id="flush-headingOne">
+                 <a class="accordion-button collapsed" href="/login" id="xd">
+                   Iniciar Sesión  <span class="icon-user-circle-o" id="icons_mobiles"></span>
+                 </a>
+               </h2>
+             </div>
+           </div>
+     
+         </div>
+   
+       {% endif %}
+     </div>
+   
+   </div>
+     <nav class="navbar navbar-white" id="barra_2" >
+       <div class="container">
+        {% if request.user.profile.tipo_permiso == 'Proveedor' %}
+        <a class="navbar-brand" href="/index_proveedor" id="nombre_empresa">
+          <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+          | Hostal "Doña Clarita"
+        </a>
+       
+        {% else %}
+         <a class="navbar-brand" href="/" id="nombre_empresa">
+         <img src="{% static 'img/logo2.png' %}" alt="" id="logo">
+         | Hostal "Doña Clarita"
+         </a>
+        {% endif %}
+        
+         {% if request.user.is_authenticated %}
+  
+         {% if request.user.profile.tipo_permiso == 'Proveedor' %}
+  
+         {% else %}
+         <ul class="nav justify-content-center">
+           <li class="nav-item">
+             <a class="nav-link" href="/" id="links">Inicio</a>
+           </li>
+           
+          <li class="nav-item">
+            <a class="nav-link" href="/all_rooms" id="links">Habitaciones</a>
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link" href="/ayuda" id="links">Ayuda</a>
+          </li>
+         </ul>
+         {% endif %}
+  
+         {% else %}
+   
+         {% endif %}
+        
+         <ul class="nav justify-content-end" >
+   
+           {% if request.user.is_authenticated %}
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ request.user.profile.foto_perfil.url}}" class="card-img" id="foto_perfil"></img>
+               Hola, {{request.user.username}}
+             </a>
+            
+             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+              {% if request.user.profile.tipo_permiso == 'Proveedor' %}
+               <li><a class="dropdown-item" href="/index_proveedor">Dashboard <span class="icon-user-circle-o"></span></a></li>
+              {% else %}
+               <li><a class="dropdown-item" href="/perfil">Perfil <span class="icon-user-circle-o"></span></a></li>
+               <li><a class="dropdown-item" href="/mis_reservas">Mis Reservas <span class="icon-address-book-o"></span></a></li>      
+               <li><a class="dropdown-item" href="/mis_facturas">Mis Facturas <span class="icon-newspaper"></span></a></li>   
+              {% endif %}
+               <li><a class="dropdown-item" href="/logout" style="margin-top: 1px;">Cerrar Sesión <span class="icon-logout"></span></a></li>
+             </ul>
+           </li>
+           {% else %}
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Invitado
+             </a>
+            
+             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones">            
+               <li><a class="dropdown-item" href="/login">Iniciar Sesión <span class="icon-user-circle-o"></span></a></li>
+             </ul>
+           </li>
+         </ul>
+         {% endif %}
+       </div>
+     </nav>
+     {% endif %}
+   </header>
+   <br>
+   <br>
+   <br>
+   <div class="">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible text-center col-12 mx-auto" id="alerta" role="alert" >
+        <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}{% else %}{{ message.tags|title }}{% endif %}</strong> {{ message }}
+        <button type="button" id="btn_close" class="icon-cancel" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+<body class="body">
+   <div class="container" id="caja_madre">
+       <p id="saludo">Hola {{request.user.username}}, </p>
+       <h2 id="titulo">¿ Con qué podemos ayudarte ?</h2>
+       <br>
+    {% if request.user.profile.tipo_permiso == 'Proveedor' %}  
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingSeven">
+        <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+            <span class="icon-user-circle" id="icons"><span style="margin-left: 20px;">Editar Perfil</span></span>
+        </button>
+      </h2>
+      <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+          <br>
+          <br>
+          2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+          <br>
+          <br>
+          3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Editar Perfil</button>
+          esto lo redirigirá a un formulario.
+          <br>
+          <br>
+          4) En el formulario podrá apreciar  : "Foto de Perfil" , "Foto de Portada" , "Bio" (descripción), "Teléfono", y la opción de agregar sus redes sociales.<br/> todas estas personalizables.
+          <br>
+          <br>
+          4) Una vez realice un cambio de su información. haga "click" sobre <button class="btn btn-primary" disabled id="btn_ej" style="background: #ff4000;">Guardar</button> y listo.
+        </div>
+      </div>
+  </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+              <span class="icon-cog" id="icons"><span style="margin-left: 20px;">Configuración de mi cuenta</span></span>
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+            <br>
+            <br>
+            2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+            <br>
+            <br>
+            3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Configuración</button>
+            esto lo redirigirá a un formulario.
+            <br>
+            <br>
+            4) En el formulario podrá apreciar su información de usuario : "Nombre de Ususario" , "Nombre de Empresa" y "Email". <br/> todas estas personalizables.
+            <br>
+            <br>
+            5) Una vez realize un cambio de su información. haga "click" sobre <button class="btn btn-primary" disabled id="btn_ej" style="background: #ff4000;">Guardar</button> y listo.
+          </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFive">
+          <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+              <span class="icon-key" id="icons"><span style="margin-left: 20px;">Seguridad</span></span>
+          </button>
+        </h2>
+        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+            <br>
+            <br>
+            2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+            <br>
+            <br>
+            3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Configuración</button>
+            esto lo redirigirá a un formulario.
+            <br>
+            <br>
+            4) En el formulario en su parte de abajo, verá (Password) con un "link" igual a lo siguiente : <a id="link_ej" >(this form)</a>, haga un click sobre este link y lo enviará a un formulario.
+            <br>
+            <br>
+            5) En este Formulario usted podrá cambiar su "Contraseña".
+
+          </div>
+        </div>
+    </div>
+
+
+    {% else %}
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item" style="border-top-left-radius: 5px; border-top-right-radius: 5px;">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" id="section_help" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <span class="icon-home" id="icons"><span style="margin-left: 20px;">Como reservar una habitación</span></span>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">1) En su barra superior de navegación se encuentra la opcion de "Habitaciones", haga un "click" sobre esta opción y lo dirigira a las habitación disponibles para realizar su reserva.
+              <br>
+              <br>
+              2) Usted podrá ver las habitaciones disponibles en el momento. dentro de las cartas de las habitaciones verá un botón  : <button class="btn btn-primary" disabled id="btn_ej">Reservar <span class="icon-calendar-1"></span></button>
+              lo cual lo enviara a un formulario.
+              <br>
+              <br>
+              3) Ingrese los datos solicitados y realize su reserva.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" id="section_help" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                <span class="icon-address-book-o" id="icons"><span style="margin-left: 20px;">Como ver mis reservas</span></span>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+              <br>
+              <br>
+              2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mis Rerservas".
+              <br>
+              <br>
+              3) En la pantalla "Mis Reservas" podrá ver su historial de las reservas que usted a hecho al hostal, en caso de querer ver más a detalle ver el paso 4.
+              <br>
+              <br>
+              4) En cada reserva realizada en su parte derecha podrá, ver el siguiente icono : <span class="icon-eye"></span>, "click" y lo enviará a la reserva más detallada.
+              </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                <span class="icon-newspaper" id="icons"><span style="margin-left: 20px;">Como ver mis facturas</span></span>
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+              <br>
+              <br>
+              2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mis Facturas".
+              <br>
+              <br>
+              3) En la pantalla "Mis Facturas" podrá ver su historial de las facturas a su nombre, en caso de querer ver más a detalle ver el paso 4.
+              <br>
+              <br>
+              4) En cada factura realizada en su parte derecha, podrá ver el siguiente icono : <span class="icon-eye"></span>, "click" y lo enviara a la factura más detallada.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingSeven">
+            <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                <span class="icon-user-circle" id="icons"><span style="margin-left: 20px;">Editar Perfil</span></span>
+            </button>
+          </h2>
+          <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+              <br>
+              <br>
+              2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+              <br>
+              <br>
+              3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Editar Perfil</button>
+              esto lo redirigirá a un formulario.
+              <br>
+              <br>
+              4) En el formulario podrá apreciar  : "Foto de Perfil" , "Foto de Portada" , "Bio" (descripción), "Teléfono", y la opción de agregar sus redes sociales.<br/> todas estas personalizables.
+              <br>
+              <br>
+              4) Una vez realice un cambio de su información. haga "click" sobre <button class="btn btn-primary" disabled id="btn_ej" style="background: #ff4000;">Guardar</button> y listo.
+            </div>
+          </div>
+      </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingFour">
+              <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  <span class="icon-cog" id="icons"><span style="margin-left: 20px;">Configuración de mi cuenta</span></span>
+              </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+                <br>
+                <br>
+                2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+                <br>
+                <br>
+                3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Configuración</button>
+                esto lo redirigirá a un formulario.
+                <br>
+                <br>
+                4) En el formulario podrá apreciar su información de usuario : "Nombre de Ususario" , "Nombre de Empresa" y "Email". <br/> todas estas personalizables.
+                <br>
+                <br>
+                5) Una vez realize un cambio de su información. haga "click" sobre <button class="btn btn-primary" disabled id="btn_ej" style="background: #ff4000;">Guardar</button> y listo.
+              </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingFive">
+              <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                  <span class="icon-key" id="icons"><span style="margin-left: 20px;">Seguridad</span></span>
+              </button>
+            </h2>
+            <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                1) En su barra superior de navegación derecha, haga un "click" sobre "Hola, MiUsuario".
+                <br>
+                <br>
+                2) Se desplegarán varias opciones en la cual usted puede interactuar, vaya sobre la que dice "Mi Perfil".
+                <br>
+                <br>
+                3) Bajo su nombre de usuario tendrá 2 opciones disponibles "editar perfil" y "configuración", click sobre <button class="btn btn-primary" disabled id="btn_ej">Configuración</button>
+                esto lo redirigirá a un formulario.
+                <br>
+                <br>
+                4) En el formulario en su parte de abajo, verá (Password) con un "link" igual a lo siguiente : <a id="link_ej" >(this form)</a>, haga un click sobre este link y lo enviará a un formulario.
+                <br>
+                <br>
+                5) En este Formulario usted podrá cambiar su "Contraseña".
+
+              </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+   </div>
+
+   <div class="container" id="mas_ayuda">
+    <h5 id="titulo">¿ Necesitas más ayuda ?</h5>
+    <br>
+    <button class="btn btn-primary" type="button" id="btn_contactos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Contáctanos</button>
+
+    <div class="offcanvas offcanvas-end" tabindex="1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">¿ Como deseás comunícarte ? </h5>
+        <button type="button" class="btn-close text-reset"  data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingEight">
+            <button class="accordion-button collapsed" type="button" id="section_help" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+              Redes Sociales
+            </button>
+          </h2>
+          <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <span class="icon-facebook"><a href="#!" id="sociales"> www.facebookfake.com</a></span><hr/>
+              <span class="icon-instagram"><a href="#!" id="sociales" >www.instagramfake.com</a></span><hr/>
+              <span class="icon-google"><a href="#!" id="sociales"> www.googlefake.com</a></span>
+            </div>
+          </div>
+
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingNine">
+            <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+              Teléfono
+            </button>
+          </h2>
+          <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <span class="icon-phone"> +56978152642</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTen">
+            <button class="accordion-button collapsed" type="button" id="section_help"  data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+              E-Mail
+            </button>
+          </h2>
+          <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <span class="icon-envelope-open-o"> EmpresaFake@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   </div>
+    <br>
+</body>
+</html>
