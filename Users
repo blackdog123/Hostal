@@ -1,0 +1,17 @@
+# Administrador -------------------
+username : Administrador  		password :shutdown1996
+-------------------------------------------
+
+Usuarios --------------------
+username : EmpresaX 		password :shutdown1996
+username : TurismoChile		password :shutdown1996
+------------------------------------------
+
+# Empleados --------------------------
+username : Solicitante   	password :shutdown1996
+username : A_Cocina 		password :shutdown1996
+username : Cajero		password :shutdown1996
+username : Recepcionista 	password :shutdown1996
+
+# Proveedores --------------------------
+username : CCU			password : shutdown1996
