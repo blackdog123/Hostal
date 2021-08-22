@@ -1,4 +1,4 @@
-# Hostal
+# Hostal "Doña Clarita"
 
 este proyecto es una aplicación web responsiva desarrollada con el framework de Python "Django" una base de datos "No SQL" (SQLITE), cuyo uso es para la realización de reservas en una hostal, también cuenta con un panel de administración para gestionar todo el negocio.
 
